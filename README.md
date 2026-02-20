@@ -1,63 +1,49 @@
-# Professional Avatar Creator (MiniMax AI Version)
+# Professional Avatar Creator (MiniMax + Vercel)
 
-A local web app that lets you upload one photo and generate 4 true AI professional avatar styles:
+Create 4 professional avatar styles from one uploaded photo:
 
 - Corporate Studio
 - Modern LinkedIn
 - Minimal Resume
 - Creative Professional
 
-## Features
+## Vercel Deploy (Recommended)
 
-- Drag-and-drop image upload (PNG/JPG/WEBP, up to 12 MB)
-- One-click AI generation of 4 avatar styles via MiniMax image generation
-- 1024x1024 outputs
-- Download each style as PNG
-- MiniMax API key input in UI (saved in your browser localStorage)
-- API region selector (`api.minimaxi.com` or `api.minimax.io`)
-
-## Replit Deploy (Recommended)
-
-1. Create a new **Node.js** Repl.
-2. Upload these files/folders to Replit root:
-   - `server.js`
-   - `package.json`
-   - `.replit`
-   - `public/`
-3. In Replit, open **Secrets** and add:
+1. Push this project to GitHub.
+2. In Vercel, click **Add New Project** and import the repo.
+3. In Vercel Project Settings -> **Environment Variables**, add:
    - `MINIMAX_API_KEY` = your MiniMax key
    - `MINIMAX_API_BASE` = `https://api.minimax.io/v1` (or `https://api.minimaxi.com/v1`)
-4. Click **Run**.
-5. Open the Replit app URL and use the uploader.
+4. Deploy.
+5. Open your Vercel URL.
 
-## Local Run
+## Required Files
 
-1. Start a local web server (recommended):
+- `public/index.html`
+- `public/app.js`
+- `public/styles.css`
+- `api/generate.js`
+- `vercel.json`
+
+## How It Works
+
+- Frontend calls `POST /api/generate`.
+- Vercel serverless function (`api/generate.js`) forwards request to MiniMax.
+- MiniMax key stays server-side in Vercel env vars.
+
+## Local Test (Optional)
+
+If you want to test static frontend quickly:
 
 ```bash
 cd /Users/xiaomuwang/Documents/New\ project
 ruby -run -e httpd . -p 3000
 ```
 
-2. Open `http://localhost:3000/public/` in your browser.
-3. Paste your MiniMax API key in the `MiniMax API Key` field.
-4. Choose API region that matches your key.
-5. Optional but recommended: provide a public image URL in `Reference Image URL`.
-6. Upload a photo (used as fallback when URL is empty).
-7. Click `Generate 4 Avatars`.
-8. Download your preferred result(s).
+Open:
 
-## Requirements
+- `http://localhost:3000/public/`
 
-- A valid MiniMax API key with image generation access and billing enabled.
-- Internet connection.
-
-## Notes
-
-- This version calls MiniMax `POST /v1/image_generation`.
-- In static-server mode, browser calls MiniMax directly.
-- If running with Node (`node server.js`), browser can use local `POST /api/generate` proxy.
-- On Replit, set `MINIMAX_API_KEY` in Secrets so browser key input is optional.
-- Your uploaded photo is sent to MiniMax during generation.
-- MiniMax reference image works best with public URLs; local upload is used as fallback.
-- API costs depend on your model and usage.
+Notes:
+- Local static mode has no backend function, so browser may try direct MiniMax calls and can be blocked by CORS.
+- Deployed Vercel mode is the intended production path.

@@ -229,6 +229,15 @@ async function requestStyleAvatar(style, imageReference, apiKey, apiBase) {
   try {
     return await requestViaLocalProxy(style, imageReference, apiKey, apiBase);
   } catch (proxyErr) {
+    const msg = String(proxyErr?.message || '').toLowerCase();
+    const backendMissing =
+      msg.includes('404') ||
+      msg.includes('failed to fetch') ||
+      msg.includes('load failed') ||
+      msg.includes('network');
+    if (!backendMissing) {
+      throw proxyErr;
+    }
     return await requestDirectMiniMax(style, imageReference, apiKey, apiBase, proxyErr);
   }
 }
