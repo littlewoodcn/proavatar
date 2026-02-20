@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Professional Avatar Creator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <p class="eyebrow">Professional Avatar Creator</p>
+        <h1>Create 4 profile-ready avatars from one photo</h1>
+        <p class="subtitle">
+          Upload your photo and get polished options for resume, LinkedIn, and email profile images.
+        </p>
+      </header>
+
+      <section class="panel upload-panel" aria-label="Upload photo">
+        <div class="api-settings">
+          <div class="field">
+            <label for="apiKeyInput">MiniMax API Key (optional if set on server)</label>
+            <input id="apiKeyInput" type="password" placeholder="Optional: enter MiniMax key in browser" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="apiBaseSelect">API Region</label>
+            <select id="apiBaseSelect">
+              <option value="https://api.minimaxi.com/v1" selected>China (api.minimaxi.com)</option>
+              <option value="https://api.minimax.io/v1">Global (api.minimax.io)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field field-inline">
+          <label for="referenceUrlInput">Reference Image URL (optional, recommended for MiniMax)</label>
+          <input
+            id="referenceUrlInput"
+            type="url"
+            placeholder="https://... (if provided, this is used instead of local upload bytes)"
+            autocomplete="off"
+          />
+        </div>
+
+        <label for="photoInput" class="dropzone" id="dropzone">
+          <input id="photoInput" type="file" accept="image/png,image/jpeg,image/webp" />
+          <div class="dropzone-content">
+            <p class="dropzone-title">Drop your photo here or click to upload</p>
+            <p class="dropzone-hint">Supports PNG, JPG, WEBP up to 12 MB</p>
+          </div>
+        </label>
+
+        <div class="controls">
+          <button id="generateBtn" class="btn btn-primary" disabled>Generate 4 Avatars</button>
+          <button id="resetBtn" class="btn btn-ghost" disabled>Reset</button>
+        </div>
+
+        <p class="privacy-note">
+          This AI version sends your uploaded image to MiniMax for generation. API usage costs may apply.
+        </p>
+      </section>
+
+      <section class="panel status-panel" id="statusPanel" hidden>
+        <div class="loading-bar">
+          <div class="loading-fill" id="loadingFill"></div>
+        </div>
+        <p id="statusText">Preparing...</p>
+      </section>
+
+      <section class="results" id="results" hidden>
+        <article class="card" data-style="corporate">
+          <div class="card-header">
+            <h2>Corporate Studio</h2>
+            <span class="badge">Best for email</span>
+          </div>
+          <canvas id="canvas-corporate" width="1024" height="1024"></canvas>
+          <button class="btn btn-secondary" data-download="corporate">Download PNG</button>
+        </article>
+
+        <article class="card" data-style="linkedin">
+          <div class="card-header">
+            <h2>Modern LinkedIn</h2>
+            <span class="badge">Best for LinkedIn</span>
+          </div>
+          <canvas id="canvas-linkedin" width="1024" height="1024"></canvas>
+          <button class="btn btn-secondary" data-download="linkedin">Download PNG</button>
+        </article>
+
+        <article class="card" data-style="resume">
+          <div class="card-header">
+            <h2>Minimal Resume</h2>
+            <span class="badge">Best for CV</span>
+          </div>
+          <canvas id="canvas-resume" width="1024" height="1024"></canvas>
+          <button class="btn btn-secondary" data-download="resume">Download PNG</button>
+        </article>
+
+        <article class="card" data-style="creative">
+          <div class="card-header">
+            <h2>Creative Professional</h2>
+            <span class="badge">Best for personal brand</span>
+          </div>
+          <canvas id="canvas-creative" width="1024" height="1024"></canvas>
+          <button class="btn btn-secondary" data-download="creative">Download PNG</button>
+        </article>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

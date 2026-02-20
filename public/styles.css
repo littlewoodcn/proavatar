@@ -1,0 +1,243 @@
+:root {
+  --ink: #102033;
+  --paper: #f2f6fb;
+  --panel: #ffffff;
+  --line: #d6deea;
+  --muted: #5c697b;
+  --primary: #0a5ad8;
+  --primary-2: #0b73f0;
+  --radius: 18px;
+  --shadow: 0 18px 45px rgba(10, 25, 50, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 10% 0%, #d9e8ff 0%, transparent 38%),
+    radial-gradient(circle at 100% 20%, #dff5ff 0%, transparent 35%),
+    var(--paper);
+  min-height: 100vh;
+}
+
+.page {
+  width: min(1120px, 92vw);
+  margin: 40px auto 60px;
+}
+
+.hero h1 {
+  margin: 8px 0;
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  letter-spacing: -0.03em;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.panel {
+  margin-top: 24px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.upload-panel {
+  padding: 18px;
+}
+
+.api-settings {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #2f4768;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  border: 1px solid #c8d7eb;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
+  background: #fff;
+  color: var(--ink);
+}
+
+.field-inline {
+  margin-bottom: 12px;
+}
+
+.dropzone {
+  border: 2px dashed #a7c4ef;
+  border-radius: 14px;
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 180ms ease;
+  background: linear-gradient(180deg, #fafdff, #f2f8ff);
+}
+
+.dropzone:hover,
+.dropzone.dragging {
+  border-color: var(--primary-2);
+  transform: translateY(-1px);
+}
+
+.dropzone input {
+  display: none;
+}
+
+.dropzone-title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.dropzone-hint {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.controls {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 160ms ease;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(120deg, var(--primary), var(--primary-2));
+}
+
+.btn-secondary {
+  color: var(--ink);
+  border-color: #b8d0f7;
+  background: #ebf3ff;
+}
+
+.btn-ghost {
+  color: var(--ink);
+  border-color: #d5deeb;
+  background: #fff;
+}
+
+.privacy-note {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.87rem;
+}
+
+.status-panel {
+  padding: 14px 18px;
+}
+
+.loading-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: #e8edf6;
+  overflow: hidden;
+}
+
+.loading-fill {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(120deg, #1c76ff, #00b2f5);
+  transition: width 280ms ease;
+}
+
+.results {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 12px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.card h2 {
+  margin: 6px 0 10px;
+  font-size: 1rem;
+}
+
+.badge {
+  background: #eaf2ff;
+  color: #0e4fad;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 0.72rem;
+}
+
+canvas {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  border: 1px solid #d4ddea;
+  display: block;
+  background: #eef3fb;
+}
+
+@media (max-width: 850px) {
+  .api-settings {
+    grid-template-columns: 1fr;
+  }
+
+  .results {
+    grid-template-columns: 1fr;
+  }
+}
